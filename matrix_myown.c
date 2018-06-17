@@ -190,6 +190,19 @@ Matrix * cha_into_dia(Matrix * mat){
     return mat;
 }
 
+
+
+//计算特征值和特征向量 雅克比迭代法
+bool jacbi(Matrix *mat ,Matrix * dblVect,double *pdbEigenValue){
+    int i,j;
+
+    for(i=0;i<mat->col;i++){
+        // dblVect->value[]
+    }
+}
+
+
+
 //计算行列式
 fraction  cal_det(Matrix * mat){
     // printf("det?" );
