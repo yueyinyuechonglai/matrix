@@ -137,7 +137,7 @@ void swap_row(Matrix * mat,int row1,int row2) {
 }
 
 
-//½×Ìİ¾ØÕó£¬¶Ô½Ç¾ØÕó
+//é˜¶æ¢¯çŸ©é˜µï¼Œå¯¹è§’çŸ©é˜µ
 Matrix * cha_into_dia(Matrix * mat){
     int m=0;
     int i,k,j;
@@ -192,7 +192,7 @@ Matrix * cha_into_dia(Matrix * mat){
 
 
 
-//¼ÆËãÌØÕ÷ÖµºÍÌØÕ÷ÏòÁ¿ ÑÅ¿Ë±Èµü´ú·¨
+//è®¡ç®—ç‰¹å¾å€¼å’Œç‰¹å¾å‘é‡ é›…å…‹æ¯”è¿­ä»£æ³•
 bool jacbi(Matrix *mat ,Matrix * dblVect,double *pdbEigenValue){
     int i,j;
 
@@ -203,7 +203,7 @@ bool jacbi(Matrix *mat ,Matrix * dblVect,double *pdbEigenValue){
 
 
 
-//¼ÆËãĞĞÁĞÊ½
+//è®¡ç®—è¡Œåˆ—å¼
 fraction  cal_det(Matrix * mat){
     // printf("det?" );
     int i,j;
@@ -294,7 +294,7 @@ Matrix * get_inverse(Matrix * mat){
     return mat;
 }
 
-//ÇóÖÈ
+//æ±‚ç§©
 int  rank(Matrix * mat){
     int i,j;
 
@@ -320,7 +320,7 @@ int  rank(Matrix * mat){
     }
 }
 
-//ÇóÆë´Î·½³ÌµÄ»ù´¡½âÏµ
+//æ±‚é½æ¬¡æ–¹ç¨‹çš„åŸºç¡€è§£ç³»
 #define MAXN 100
 #define MAX 100
 int  syst(Matrix * mat){
@@ -333,14 +333,14 @@ int  syst(Matrix * mat){
     j=0;
     for(i=0;i<mat->row;i++){
         for(j;j<mat->col;j++){
-            //·Ç×ÔÓÉÎ´ÖªÁ¿
+            //éè‡ªç”±æœªçŸ¥é‡
             if(mat->value[i][j].x!=0){
                 fuzhi[j]=1;
                 pos[j]=i;
                 j++;
                 break;
             }
-            //×ÔÓÉÎ´ÖªÁ¿
+            //è‡ªç”±æœªçŸ¥é‡
             else {
                 fuzhi[j]=0;
 
@@ -369,7 +369,7 @@ int  syst(Matrix * mat){
         }
     }
     int m=1;
-    printf("»ù´¡½âÏµÎª£º\n");
+    printf("åŸºç¡€è§£ç³»ä¸ºï¼š\n");
     for(i=0;i<mat->col;i++){
         if(fuzhi[i]==0){
             printf("X%d:(",m);
@@ -386,23 +386,23 @@ int  syst(Matrix * mat){
     return m;
 }
 
-//Æë´ÎÏßĞÔ·½³Ì×é
+//é½æ¬¡çº¿æ€§æ–¹ç¨‹ç»„
 
 void linear_ab(Matrix *mat){
     int i,j;
     fraction x[MAXN][MAX];
     int fuzhi[mat->col],pos[mat->row];
-    //matÎªÏµÊı¾ØÕó
+    //matä¸ºç³»æ•°çŸ©é˜µ
     if(rank(mat)==mat->col){
-        //Ö»ÓĞÁã½â
+        //åªæœ‰é›¶è§£
         printf("x = 0\n" );
     }
     else {
         cha_into_dia(mat);
 
-        int m;//½âÏòÁ¿ÊıÁ¿
+        int m;//è§£å‘é‡æ•°é‡
         m=syst(mat);
-        printf("Ò»°ã½âÎª£º\n  X = ");
+        printf("ä¸€èˆ¬è§£ä¸ºï¼š\n  X = ");
         for(i=1;i<m;i++){
             printf("k%d X%d",i,i);
             if(i!=m-1){
@@ -413,7 +413,7 @@ void linear_ab(Matrix *mat){
     }
 }
 
-//Çó½â·ÇÆë´ÎÏßĞÔ·½³Ì×é
+//æ±‚è§£éé½æ¬¡çº¿æ€§æ–¹ç¨‹ç»„
 void linear_nor(Matrix *mat){
     int i,j;
 
@@ -437,7 +437,7 @@ void linear_nor(Matrix *mat){
         printf("no answer!");
     }
 
-    //Ö»ÓĞÎ¨Ò»½â£¬b=0Ê±£¬Ö»ÓĞÁã½â
+    //åªæœ‰å”¯ä¸€è§£ï¼Œb=0æ—¶ï¼Œåªæœ‰é›¶è§£
     else if (r1==r2&&r1==co_mat.col) {
         cha_into_dia(mat);
         for (i=0;i<mat->col-1;i++) {
@@ -450,11 +450,11 @@ void linear_nor(Matrix *mat){
 
     }
 
-    //ÎŞÇî¶à¸ö½â
+    //æ— ç©·å¤šä¸ªè§£
     else {
         cha_into_dia(mat);
-        //ÌØ½â
-        printf("ÌØ½âÎª£º\n   X0 = (" );
+        //ç‰¹è§£
+        printf("ç‰¹è§£ä¸ºï¼š\n   X0 = (" );
         fraction x0[mat->col];
         int fuzhi[mat->col];
         memset(fuzhi,0,mat->col);
@@ -487,12 +487,12 @@ void linear_nor(Matrix *mat){
             if(j==mat->col-2) break;
         }
 
-        //AX=0µÄ»ù´¡½âÏµ
+        //AX=0çš„åŸºç¡€è§£ç³»
         cha_into_dia(&co_mat);
         int m = syst(&co_mat);
 
-        //Ò»°ã½â
-        printf("Ò»°ã½âÎª£º\n  X = x0 ");
+        //ä¸€èˆ¬è§£
+        printf("ä¸€èˆ¬è§£ä¸ºï¼š\n  X = x0 ");
         for(i=1;i<m;i++){
             printf("+ k%dX%d",i,i );
             if (i==m-1) {
@@ -503,17 +503,17 @@ void linear_nor(Matrix *mat){
     }
 }
 
+//test
 
 
-
-//ÊäÈëÌáÊ¾
+//è¾“å…¥æç¤º
 int print_tips(){
     printf("This is a Matrix operator.\n");
-    printf("1   matrix inversion(¾ØÕóÇóÄæ)\n");
-    printf("2   caculate detaminate(¼ÆËãĞĞÁĞÊ½)\n" );
-    printf("3   linear equations(Çó½âÏßĞÔ·½³Ì×é)\n" );
-    printf("4   find the rank(ÇóÖÈ)\n" );
-    printf("5   ÏòÁ¿ÔËËã\n");
+    printf("1   matrix inversion(çŸ©é˜µæ±‚é€†)\n");
+    printf("2   caculate detaminate(è®¡ç®—è¡Œåˆ—å¼)\n" );
+    printf("3   linear equations(æ±‚è§£çº¿æ€§æ–¹ç¨‹ç»„)\n" );
+    printf("4   find the rank(æ±‚ç§©)\n" );
+    printf("5   å‘é‡è¿ç®—\n");
     printf("Please input the number before your wanting operation.\n" );
     //waiting to add function;
     int n;
@@ -535,18 +535,18 @@ int operations(int n) {
         print_fraction(ans);
     }
     if (n==3) {//to do :
-        printf("·ÇÆë´ÎÏßĞÔ·½³ÌÊä1\n");
+        printf("éé½æ¬¡çº¿æ€§æ–¹ç¨‹è¾“1\n");
         int choose;
         scanf("%d",&choose);
 
         if(choose==1){
-            printf("Input the augmented matrix(Ôö¹ã¾ØÕó)\n" );
+            printf("Input the augmented matrix(å¢å¹¿çŸ©é˜µ)\n" );
             Matrix *mat=read();
             linear_nor(mat);
         }
 
         else {
-            printf("ÊäÈëÏµÊı¾ØÕó\n" );
+            printf("è¾“å…¥ç³»æ•°çŸ©é˜µ\n" );
             Matrix *mat=read();
             linear_ab(mat);
 
